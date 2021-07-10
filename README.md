@@ -21,12 +21,14 @@ The simplest architecture that came to mind was this :
  - A web server that requests informations from a DB server and prints them back to the client.
  - A DB server that provides an API.
 
+```
 	┌──────────┐       ┌────────────┐          ┌───────────┐
 	│          ├───────►            ├──────────►           │
 	│ Client   │       │ Web Server │          │ DB Server │
 	│ Browser  ◄───────┤            ◄──────────┤           │
 	│          │       └────────────┘          └───────────┘
 	└──────────┘
+```
 
 ### Web server
 
