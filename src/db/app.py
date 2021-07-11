@@ -4,8 +4,6 @@ import csv, json, os
 DIRNAME = os.path.dirname(__file__)
 
 
-#if __name__ == "__main__":
-#app.run()
 app = Flask(__name__)
 
 @app.route('/')
