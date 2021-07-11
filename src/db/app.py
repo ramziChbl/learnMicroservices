@@ -1,5 +1,7 @@
 from flask import Flask
-import csv, json
+import csv, json, os
+
+DIRNAME = os.path.dirname(__file__)
 
 
 #if __name__ == "__main__":
@@ -49,7 +51,28 @@ def field(generation, pokemonNumber, field):
 					return json.dumps(row[field])
 				break
 	return 'not found'
+'''
+@app.route('/api/pokedex/<string:pokemonName>')
+def field(pokemonName):
+	print((generation, pokemonNumber))
+	print('data/gen{}.csv'.format(int(generation)))
+	with open('data/gen{}.csv'.format(int(generation))) as file:
+		print('IM in')
+		reader = csv.DictReader(file)
+		print(reader)
+		for row in reader:
+			print(row)
+			if int(row['Num']) == pokemonNumber:
+				if row[field]:
+					return json.dumps(row[field])
+				break
+	return 'not found'
+'''
+@app.route('/api/pokedex/all')
+def all():
+	filepath = os.path.join(DIRNAME, 'data/pokedex.csv')
+	with open(filepath, 'r') as file:
+		reader = csv.DictReader(file)
+		return json.dumps(list(reader))
 
-
-#	app = Flask(__name__)
-
+	return 'pokedex not found'
