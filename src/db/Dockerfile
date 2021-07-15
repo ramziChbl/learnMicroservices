@@ -12,5 +12,5 @@ RUN pip install flask
 ENV FLASK_APP=app.py
 
 # "--host 0.0.0.0" so that the server listens on all interfaces and not only lo
-CMD ["flask", "run", "--host", "0.0.0.0"] 
+CMD ["flask", "run", "--host", "0.0.0.0", "-p", "5002"] 
 

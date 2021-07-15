@@ -34,3 +34,6 @@ def all():
 		reader = csv.DictReader(file)
 		return json.dumps(list(reader))
 	return 'Pokedex not found'
+
+if __name__ == "__main__":
+    app.run(port=5002)
