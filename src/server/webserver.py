@@ -12,8 +12,15 @@ app = Flask(__name__)
 
 @app.route('/')
 def main():
-    url = "http://{}:{}/api/pokedex/all".format(DB_HOSTNAME, DB_PORT) 
-    #response = requests.get(url)
+    # Check if server is alive
+    try:
+        checkIfAlive = requests.get("http://{}:{}/").format(DB_HOSTNAME, DB_PORT)
+    except Exception as e:
+        return "DB server unreachable."
+    else:
+        print("Status:", checkIfAlive.status_code)
+
+    url = "http://{}:{}/api/pokedex".format(DB_HOSTNAME, DB_PORT) 
     try:
         response = requests.get(url)
         # If the response was successful, no Exception will be raised
@@ -42,19 +49,20 @@ def pokemonDetails(pokemonName):
         print(url)
         # If the response was successful, no Exception will be raised
         response.raise_for_status()
-        print('connection to db established')
-
+        print('connection to DB established')
 
         # It can return 2 pokemons if there is a special version of it
         pokemonList = json.loads(response.text)
-        print(pokemonList)
-        print(type(pokemonList))
-        print(len(pokemonList))
 
     except HTTPError as http_err:
         print(f'HTTP error occurred: {http_err}')  # Python 3.6
+        if http_err.response.status_code == 400:
+            return 'Pokemon \'{}\' not found.\n'.format(pokemonName)
+        elif http_err.response.status_code == 500:
+            return 'Problem in DB server.'
     except Exception as err:
         print(f'Other error occurred: {err}')  # Python 3.6
+        return 'lol'
     else:
         print("Status:", response.status_code)
 
