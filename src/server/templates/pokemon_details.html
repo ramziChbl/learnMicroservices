@@ -2,22 +2,17 @@
 <title>{% block title %}{% endblock %}</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <body>
+  {% for pokemon in pokemonList %}
+  <h1>{{ pokemon['Name'] }}</h1>
   <table>
-    <thead>
-      <tr>
-        {% for field in tableFields %}
-          <th>{{ field }}</th>
-        {% endfor %}
-      </tr>
-    </thead>
     <tbody>
-      {% for pokemon in pokedex %}
+      {% for k,v in  pokemon.items() %}
       <tr>
-        {% for v in  pokemon.values() %}
+          <td>{{ k }}</td>
           <td>{{ v }}</td>
-        {% endfor %}
       </tr>
       {% endfor %}
     </tbody>
   </table>
+  {% endfor %}
 </body>
