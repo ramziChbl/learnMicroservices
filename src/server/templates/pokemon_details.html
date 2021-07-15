@@ -1,0 +1,18 @@
+<!doctype html>
+<title>{% block title %}{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<body>
+  {% for pokemon in pokemonList %}
+  <h1>{{ pokemon['Name'] }}</h1>
+  <table>
+    <tbody>
+      {% for k,v in  pokemon.items() %}
+      <tr>
+          <td>{{ k }}</td>
+          <td>{{ v }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endfor %}
+</body>
