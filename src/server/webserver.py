@@ -3,8 +3,9 @@ import os, requests, json
 from requests import HTTPError
 
 DIRNAME = os.path.dirname(__file__)
-#DB_HOSTNAME = 'db'
-DB_HOSTNAME = 'localhost'
+#DB_HOSTNAME = 'localhost'
+# Used for docker containers
+DB_HOSTNAME = 'db'
 DB_PORT = 5002
 
 app = Flask(__name__)
