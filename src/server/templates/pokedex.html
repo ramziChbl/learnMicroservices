@@ -1,0 +1,23 @@
+<!doctype html>
+<title>{% block title %}{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<body>
+  <table>
+    <thead>
+      <tr>
+        {% for field in tableFields %}
+          <th>{{ field }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for pokemon in pokedex %}
+      <tr>
+        {% for v in  pokemon.values() %}
+          <td>{{ v }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
