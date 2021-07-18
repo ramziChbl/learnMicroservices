@@ -15,9 +15,9 @@ app = Flask(__name__)
 def main():
     # Check if server is alive
     try:
-        checkIfAlive = requests.get("http://{}:{}/").format(DB_HOSTNAME, DB_PORT)
+        checkIfAlive = requests.get("http://{}:{}/".format(DB_HOSTNAME, DB_PORT))
     except Exception as e:
-        return "DB server unreachable."
+        return "DB server unreachable : {}".format(str(e))
     else:
         print("Status:", checkIfAlive.status_code)
 
