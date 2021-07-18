@@ -4,22 +4,23 @@ In this repo, I'll try to to fully grasp microservices development and deploymen
 
 The objectives are :
  - Try most common microservices communcation technologies : RestAPI, gRPC.
- - Deploy microservices to a Python production environment with Docker than Kubernetes and maybe something else after.
- - Deploy different types of databases in Docker than Kubernetes.
- - Include unit tests and integration tests to my microservices and middleware.
+ - Deploy microservices to a Python production environment with Docker then Kubernetes (and maybe something else after).
+ - Deploy different types of databases in Docker then Kubernetes.
+ - Include unit tests and integration tests to these microservices and middleware.
 
 ## Stage 1 :
 
  - Microservices communication : RestAPI
  - Database : CSV file
+ - Deployed as Docker containers with Docker-compose.
 
 ### Architecture
 
-I want to start with something simple.
+Let's start with something simple.
 The simplest architecture that came to mind was this :
 
  - A web server that requests informations from a DB server and prints them back to the client.
- - A DB server that provides an API through *pokemon* endpoint.
+ - A DB server that provides an API through *pokedex* endpoint.
 
 ```
 	┌──────────┐       ┌────────────┐          ┌───────────┐
@@ -32,20 +33,21 @@ The simplest architecture that came to mind was this :
 
 ### Web server
 
-Minimalistic, It requests info from DB server and do a little html formatting.
-I'll use Flask.
+ - Minimalistic, It requests info from DB server and do a little html formatting.
+ - Built in Flask.
 
 ### DB server
 
-I'll start with simple csv files that contains the [Pokémon Pokédex](https://pokemondb.net/pokedex).
+I'll start with simple csv files that contains all *existing* pokemons in the [Pokémon Pokédex](https://pokemondb.net/pokedex).
 
-Each Pokémon generation is saved in a csv file.
+For a start I'll implement only 2 GET methods :
 
-8 Generations == 8 files
+To request all pokedex :
 
-For a start I'll implement only GET method :
+> GET /api/pokedex/
 
-> GET /api/pokedex/generation/pokemonNumber
+To request a pokemon info :
 
+> GET /api/pokedex/[POKEMON NAME]
 
 # TODO
