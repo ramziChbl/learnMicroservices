@@ -10,6 +10,9 @@ RUN pip install flask
 # Install requests
 RUN pip install requests
 
+# Copy templates folder
+COPY templates templates/
+
 # Run Flask
 ENV FLASK_APP=webserver.py
 
